@@ -1,0 +1,11 @@
+ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    background: #d200000d;
+    font-style: oblique;
+}
+.active-link{
+    border: 2px blueviolet solid;
+    border-bottom-color: aquamarine;
+}

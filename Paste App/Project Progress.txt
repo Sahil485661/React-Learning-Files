@@ -1,0 +1,15 @@
+Date: 21/07/26
+Progress: 28:00 minute tak video
+Used Array method
+.some() ek JavaScript array method hai jo check karta hai ki kya array me kam se kam ek element condition satisfy karta hai.
+
+findIndex(): ek method hai array ka jiske through hum array ke us index ko nikal sakte hai jise hum update ya changes karna chahte hai
+ye check if (index >= 0) isliye lagaya jaata hai kyunki findIndex agar match na mile to -1 return karta hai.
+
+filter(): Agar tumhe us item ko array se nikalna (delete) hai. filter method ka magic hi yahi hai ki woh ek naya array return karta hai jisme woh item nahi hoti jo tumne hataani thi.
+
+useSelector: Redux Store se Data "Padhne" ke liye
+Jab bhi kisi component ko Redux store ke andar rakha hua data (jaise tumhari paste array) chahiye hota hai, toh hum useSelector ka use karte hain. Yeh store ko "subscribe" kar leta hai.
+
+useDispatch: Redux Store mein Action "Bhejne" (Trigger karne) ke liye
+Jab user kisi button par click karega (jaise "Delete" ya "Add"), toh humein reducer ko trigger karna padega. Wahan useDispatch kaam aata hai.

@@ -1,0 +1,29 @@
+What is main Problem before useContext: 1. Sabse Pehle Problem Samjho: Prop Drilling Kya Hai?
+Kisi ko bhi useContext ki value tab samajh aayegi jab wo uske bina hone wali takleef ko samjhega. Ise Prop Drilling kehte hain.
+
+Real-world Analogy: Maan lo aap ek multi-storey building ke Ground Floor par khade hain aur aapko 5th Floor par baithe ek person ko ek tiffin box dena hai.
+
+Agar lift nahi hai, toh aap 1st floor wale ko denge, 1st wala 2nd wale ko, 2nd wala 3rd wale ko... aur is tarah tiffin 5th floor tak pahuchega.
+Beech ke floors wale logo ka us tiffin se koi lena-dena nahi tha, wo bas ek courier ki tarah kaam kar rahe the.
+
+React mein bhi jab Parent component se kisi bahut gehre '(deeply nested) Child component' tak data bhejna hota hai, toh beech ke saare components ko zabardasti props pass karne padte hain, bhale hi unhe us data ki koi zaroorat na ho.
+
+Solution Samjho: useContext Kya Hai?
+useContext React ka ek hook hai jo is Prop Drilling ki problem ko jad se khatam karta hai. Yeh aapko ek "Global State" ya ek direct pipeline banane ki permission deta hai. Data seedhe Parent se us specific Child tak pahunch jata hai jise uski zaroorat hai, bina beech ke components ko pareshan kiye.
+
+3. Explain the 3 Golden Steps (Teen Main Steps)
+Context use karne ke liye sirf 3 steps yaad rakhne hote hain:
+
+Create: Context banana (createContext).
+
+Provide: Data ko component tree ko available karana (Provider).
+
+Consume: Jis child ko data chahiye, wahan hook ka use karke data nikalna (useContext).
+
+
+
+Provider Nesting: Agar app mein multiple global values hain (jaise Cart, Theme, Auth), toh aapko Providers ko ek ke upar ek Nest (layer ke upar layer) karna padega. Ise React community mein bilkul normal bola jata hai.
+
+Selective Access: Agar kisi specific component ko hi permission chahiye (Selective Access), toh use pure app ke upar wrap nahi kiya jata. Balki sirf us specific area (jaise sirf Dashboard) me wrap kiya jata hai taaki root clean rahe.
+
+Context Hell se kaise bachein: Jab project mein 10-15 contexts ho jaate hain, toh code ek ke andar ek wrap hote-hote bahut kharab dikhne lagta hai. Ise clean karne ke liye professionals ek alag AppProvider.jsx file bana lete hain jisse main code neat and clean ho jata hai.

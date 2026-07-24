@@ -1,0 +1,13 @@
+#user-image{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.user-container{
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+}

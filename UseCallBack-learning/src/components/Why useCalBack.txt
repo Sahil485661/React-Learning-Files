@@ -1,0 +1,60 @@
+//React. memo —> wrap —> component —> component
+re—render tabhi hoga jab props change honge nahi toh
+re—render nahi hoga
+// if u r sending a function, then react.memo wont be able to save you from re-rendering
+
+
+// jab koi function call karte hai toh re-render hota hai kyunki function ka reference change hota hai har baar and jabki function me koi changes nahi hoti fir bhi re render hoke "Child Component Re-rendered" print hota hai. kyunki react memo ko ye lagta hai ki function me changes hua hai kyunki function ka reference change hota hai har baar. Isse bachne ke Liye ham useCallback ka use karte hai
+
+
+useCallback ka post-mortem karte hain. Isse pehle tumne useMemo seekha—jiska kaam value ko cache karna tha. useCallback ka kaam function ko cache karna hai.
+
+1. Sabse Pehle Problem Samjhao: "The Function Re-creation Trap"
+React mein jab bhi component re-render hota hai, uske andar ke saare functions nayi memory location par dobara create hote hain.
+
+Problem kahan aati hai?
+Agar tumne koi function kisi Child Component ko prop ki tarah pass kiya hai (jo React.memo se wrap hai), toh child ko lagega ki "Prop badal gaya hai" (kyunki function ka reference change ho gaya). Isliye, child component har baar re-render hoga, chahe data mein kuch na badla ho.
+
+Real-world Analogy: Tumhare paas ek assistant (Child Component) hai jo tabhi kaam karta hai jab usse koi "naya task" mile. Tumne ek task likha ("Task A"). Agli baar tumne phir wahi "Task A" likha, lekin paper ka piece naya hai. Assistant ko lagta hai ki task naya hai, toh wo phir se kaam shuru kar deta hai. useCallback us assistant ko wahi purana "Task A" wala paper pakda deta hai, taaki wo kaam dobara na kare.
+
+2. Solution Samjhao: useCallback Kya Hai?
+useCallback tumhe ek stable function reference deta hai. Yeh tumhare function ko tab tak nahi badalta jab tak uski dependencies change na ho jayein.
+
+3. Explain the 3 Golden Steps
+Wrap the Function: Apne function definition ko useCallback mein wrap karo.
+
+Define Dependencies: Array mein woh variables daalo jo function ke andar use ho rahe hain.
+
+Pass to Child: Is function ko child components ko as a prop pass karo.
+
+syntax : useCallback(
+    () => {
+      functionn
+    },
+    [dependencies],
+  )
+
+  dependencies array [] ke andar rakhenge
+
+
+Jab component first render hota hai, useCallback ek function banata hai jo closure ke through us waqt ka count capture kar leta hai.
+
+Dependency array [] ka matlab hai: ye function sirf ek baar banega aur dobara update nahi hoga.
+
+Matlab: agar count future renders me change bhi ho jaaye, handleClick ke andar jo closure hai wo pehle render ka count hi use karega.
+
+Isliye agar initial count = 0 tha, to console.log(count) hamesha 0 print karega, chahe tum setCount se value badhao.
+
+Example: const handleClick = useCallback(() => {
+  console.log(count);
+}, []);
+
+Logical Reason
+Closure trap: JavaScript closures function ke banne ke waqt ki values capture kar lete hain.
+
+useCallback agar dependencies empty hain, to wo function ko dobara banata hi nahi → closure stale ho jaata hai.
+
+Isko stale closure problem kehte hain React me.
+
+
+React.Memo: This is use basically to memomize the components. Prevent uunnecessary re-renders

@@ -1,0 +1,10 @@
+Date: 14/07/26
+First of all we need to install react form hook after that I can use it.
+react form hook is use for manage form data and handle input validation when user is fill any data upon form or input field
+
+react hook form ke saath zod ka use karna best rahta hai because wo inbuilt error and password input ko handle kar leta hai 
+So 
+react hook form + Zod = Deadly combination
+Zod ko bhi firstly install karna padta hai then uske documentation se code utha ke handle karo ratna nahi hai code ko na hi ratt paoge zod ka bhi.
+
+maine bahut se error handle kiye hai manually but zod se direct ho jaate.

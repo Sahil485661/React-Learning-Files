@@ -1,0 +1,53 @@
+useMemo ko samajhne ke liye pehle "Computationally Expensive Operations" ko samjho.
+
+1. Sabse Pehle Problem Samjhao: Unnecessary Re-calculations
+React mein jab bhi Parent component re-render hota hai, uske andar ke saare functions aur variables dobara execute hote hain. Agar tumhara koi aisa function hai jo bahut zyada data process karta hai (jaise 10,000 items ko filter ya sort karna), toh wo har render par CPU ko pareshan karega.
+
+Real-world Analogy: Maan lo tumhe har roz office ke liye ek report banani hai.
+
+Without useMemo: Tum har 5 minute mein (har re-render) wahi purani calculation dobara kar rahe ho, bhale hi data change nahi hua.
+
+With useMemo: Tumne report ko ek folder mein "save" kar liya. Jab tak data change nahi hota, tum purani report hi dikhate rahoge. Jab data change hoga, tabhi tum dobara calculation karoge.
+
+2. Solution Samjhao: useMemo Kya Hai?
+useMemo React ka ek hook hai jo calculation ke result ko cache (memorize) karta hai. Yeh tabhi re-calculate hota hai jab uski dependencies change hoti hain.
+
+3. Explain the 3 Golden Steps
+Wrap the Calculation: Apna heavy function useMemo ke andar daalo.
+
+Define Dependencies: Array mein wo variables daalo jin par tumhari calculation depend karti hai.
+
+Use the Cached Value: useMemo tumhe directly calculation ka result dega, function call nahi.
+
+useMemo(()=> expennsiveTask(),Array me [] variable jiske change hone useMemo work karega)
+
+Pro-Tips / Senior Developer Insights
+Don't useMemo everything: Yeh galti junior devs karte hain. Har choti calculation ko useMemo mein daalne se fayda nahi, ulta React ka memory usage badh jata hai. useMemo ka apna overhead hota hai. Ise tabhi use karo jab calculation sach mein "heavy" ho.
+
+Equality Check: useMemo values ko compare karne ke liye Object.is ka use karta hai. Agar tum dependency mein objects ya arrays daloge, toh dhyaan rahe ki unka reference change nahi hona chahiye.
+
+React Compiler (Modern React): React 19 aur aage ke versions mein "React Compiler" aa gaya hai, jo automatically useMemo aur useCallback jaisa kaam kar deta hai. Isliye, ab tumhe manual optimization ki zaroorat kam padegi.
+
+Brutal Reality Check:
+Tumne abhi tak useEffect, useRef, aur useMemo padh liya. Ek senior developer sirf code nahi likhta, wo yeh decide karta hai ki kab optimize karna hai aur kab nahi.
+
+Question: Agar main useMemo ko har ek const variable ke saath laga doon, toh kya meri app super fast ho jayegi? Iske piche ka logical flaw kya hai?
+
+
+Ans.: Bahut se junior developers yahi samajhte hain ki jitna zyada optimization, utni fast app. Lekin "Over-optimization is the root of all evil."
+
+Iske piche ka "Brutal" logic yeh hai:
+Memory Overhead: useMemo ka result memory mein store karna padta hai. Agar har choti cheez (jaise 2+2=4) ke liye tum useMemo use karoge, toh tum browser ki RAM bhar rahe ho.
+
+Comparison Cost: Har baar re-render par React ko tumhari dependency array (jaise [a, b]) ko check karna padta hai ki purani value change hui ya nahi. Ab socho, calculation se zyada mehnat toh usko compare karne mein lag rahi hai.
+
+Readability/Complexity: Code itna ganda ho jayega ki tumhara partner developer (ya tum khud 6 mahine baad) use dekh kar headache feel karoge.
+
+Professional Approach (Rules of Thumb):
+Senior developer banne ke liye ye rule follow karo:
+
+Rule #1: Benchmarking first, Optimization second. Jab tak console.time() ya React DevTools ka Profiler ye na dikha de ki "Haan, ye component slow hai aur ye calculation bottleneck hai", tab tak useMemo mat lagao.
+
+Rule #2: Logic complexity dekho. Agar function simple addition, string manipulation ya array mapping (small size) kar raha hai, toh use simple const rehne do. useMemo wahan lagao jahan filter/sort mein hazaro items ho.
+
+Rule #3: Dependency ka dhyan. Agar tum useMemo ke andar object ya array bana rahe ho, toh unhe useMemo mein daalne ka koi fayda nahi kyunki har render par naya reference banega aur comparison fail ho jayega.

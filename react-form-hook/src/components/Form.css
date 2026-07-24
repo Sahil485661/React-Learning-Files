@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: beige;
+    padding: 20px;
+    flex-direction: column;
+}
+.err{
+    border-color: red;
+    
+}
+.click{
+    background-color: green;
+    
+}

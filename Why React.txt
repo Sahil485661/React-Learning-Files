@@ -1,0 +1,103 @@
+
+React Virtual DOM use karta hai kyu.
+
+React ko ham babel ke through bhi direct bina node download kare chala sakte hai
+Virtual DOM: Lightweight Copy of the real DOM. It is improve the performance of our Web application
+Virtual DOM basicaly kya karta hai ki Virtual DOM ki copy bana leta hai and changes hone State ya props ke direct ye compare karta hai. Iss Comparision ko "Diffing Algorithm" bolte hai. copied virtual DOM se and jo bhi changes hote hai unhe bas fir wo Actual DOM me update karta hai na ki poore DOM ko change karta hai. Iss update ko hi Reconcilation bolte hai.
+
+Q. How Do you prevent re-rendering?
+Ans. By using React.memo for functional components.
+by using shouldComponentUpdate in class components.
+By using useCallback and useMemo for function and values
+
+What is fragment?
+Ans. Used to group elements without DOM node.
+syntax: <>
+</>
+What is Conditional Rendering?
+Ans. {isLoggin ? <Dashboard/>: <Login/>}
+
+What is CSR and SSR?
+CSR (Client-Side Rendering):-
+In React apps, CSR means:
+The browser a basic HTML file, and JavaScript builds the Ul on the client(Browser)
+Flow:
+1. Browser loads empty HTML
+2. JS bundle loads
+3. React renders Ul
+Example:
+• Normal React app (create-react-app, Vite)
+
+• Pros
+• Fast navigation after first load
+• Smooth user experience (SPA)
+• Less load on server
+X Cons
+• Slow initial load
+• Bad for SEO (content not ready initially)
+
+SSR: Server Side Rendering
+SSR (Server-Side Rendering):-
+SSR means:
+HTML is generated on the server and sent to the browser.
+Flow:
+I. Request goes to server
+2. Server renders HTML
+3. Browser receives fully rendered page
+Example:
+• Next.js
+
+Pros
+• Fast initial load
+• Great for SEO
+• Better performance on slow devices
+X Cons
+• More server load
+• Slower navigation (page reload)
+• Complex setup
+
+How do you optimize Reactapp?
+• useMemo / useCallback
+• Lazy loading
+• Code splitting
+• Avoid unnecessary re-renders
+
+. What is Hygration?
+Attaching event listeners to SSR HTML.
+
+Q. What is Higher Order Component (HOC)?
+Ans. Function that takes a component and returns a new component.
+
+Q. What is Lazy Loading?
+Ans. Load components only when needed.
+const Home = Reactlazy(() => importCJHome');
+
+Q. What is Suspense?
+Ans. <Suspense
+<Home/>
+</Suspense>
+
+Q. What are Custom Hooks?
+Ans. Reusable logic using hooks.
+function useFetch(){
+// custom logic}
+always write use... than your custom hook name 
+ex. useFetch
+
+What is Redux?
+State management library for large apps.
+Central store + preedictable state updates
+
+useContext vs Redux
+Feature                          Use Context API,                                Use Redux Toolkit
+Data Update Frequency        Bahut kam (e.g., Theme, Locale, Auth User)"        Bahut zyada (e.g., Cart, Live Dashboard, Inputs)"
+Complexity,                  Simple data                                        Complex logic (Reducers, Thunks, API Caching)"
+Performance Needs            Low (Re-render chalta hai)                         High (Performance critical)
+Setup                        Fast/Minimal                                       Thoda zyada setup
+Scope                        Component tree ke andar hi limited                 Pure global store, app‑wide accessible 
+Setup Complexity             Simple (Context.Provider + useReducer)             Thoda zyada (configureStore, slices, middleware) 
+Boilerplate Kam              lightweight                                        Toolkit ne boilerplate kam kiya hai, but still structured 
+DevTools Support             ❌ Nahi (manual logging)                           Redux DevTools (time travel debugging, state inspection) 
+Middleware / Side Effects    ❌ Built‑in nahi                                   Middleware (thunk, saga, RTK Query) 
+Performance                 Context re‑render karwa sakta hai poore subtree     Redux granular subscription, optimized re‑renders 
+Best Use Case               Small apps, limited global state                    Large apps, complex state, async data fetching 

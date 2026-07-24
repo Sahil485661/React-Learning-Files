@@ -1,0 +1,23 @@
+Date: 13/07/26
+
+
+
+
+
+
+
+... ka use hota hai Poore object ko copy karne ke liye and fir ise hum changes karte hai jaha bhi jis element pe karna hota hai
+
+
+nested route: Means ek route ke andar aur multiple route hona nested route use children[] keyword for make nested route example is created upon App.jsx dashboard path.
+
+OutLet:
+How to render children route in react App: use <OutLet/> in the parent component below line like i am used in Dashboard for render the children route from the app.
+
+How to handlle Routing Error Like not Found type: We use "*" path where if any other link will be show error which I want error to show you can see we are used in our App.jsx
+
+anchor tag is load full page every time when click so not preferred this solution is use link or navlink tag. Because these tag are not reload when we click any link
+
+NavLink: this tag is better as compare to Link and anchor. Because this tag is provide isActive boolean flag that can be use for styling or any thing.
+
+useNavigate Hook: useNavigate hook is basically use for navigate one page to another page. without any refresh for example I am use it in the Home component in button tag

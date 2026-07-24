@@ -1,0 +1,55 @@
+Date: 15/07/26
+Terms in Redux toolkit:
+1. Action
+2. Reducer
+3. Slice
+4. Store
+5. State
+above 4 things are happen internally when I am using Redux toolkit
+
+intarnally these things running
+onclick -> handleClick() -> Action Dispatch -> Store me jayega action-> than Reducer -> logic -> State Update -> UI update
+
+ Practical Approach to Yaad Rakhna
+Pattern pe focus karo, code pe nahi
+
+Har slice ek hi pattern follow karta hai:
+
+initialState
+reducers
+actions
+export reducer  
+Agar tum ek slice samajh gaye, baaki sab usi template pe chalenge.
+
+Cheat Sheet / Shortcut Table banao  
+Tumhare liye ek shortcut table:
+
+Ye table tumhe har file ka role yaad dilayega.
+
+Analogy-driven yaad rakhna
+
+Store = School ka notice board (sabko ek hi jagah se info milti hai).
+
+Slice = Subject ka register (Math, Science alag-alag).
+
+Reducer = Teacher jo decide karta hai marks kaise update honge.
+
+Action = Student ka request ("marks add karo").
+
+State = Final report card.
+
+Agar analogy yaad hai, code automatically recall ho jaata hai.
+
+Practice with small project  
+Ek chhota project banao (Counter app ya Todo app). Usme Redux Toolkit implement karo. Jab tum 2–3 baar likhoge, pattern tumhare dimaag mein fix ho jaayega.
+
+Code snippets reuse karo  
+Production mein tumhe har slice ke liye copy-paste + modify karna hota hai. Ek base template bana lo aur har feature usi se derive karo.         
+
+Steps to create redux 
+steps:
+1. create store
+2. wrap app component under Provider
+3. create Slice
+4. register reducer in store
+

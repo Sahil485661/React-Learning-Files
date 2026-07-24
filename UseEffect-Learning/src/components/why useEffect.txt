@@ -1,0 +1,49 @@
+1. Sabse Pehle Problem Samjho: Side Effects Kya Hain?
+React कंपोनेंट्स का मुख्य काम सिर्फ UI (यूज़र इंटरफेस) रेंडर करना है ।
+लेकिन असली दुनिया के ऐप्स में हमें UI दिखाने के अलावा भी बहुत कुछ करना पड़ता है, जैसे:
+
+API से डेटा मंगाना (Fetch data) ।
+
+ब्राउज़र का document.title बदलना ।
+
+किसी बाहरी सर्विस (जैसे टाइमर, एनालिटिक्स या DOM इवेंट्स) को अपडेट करना ।
+
+इन सब बाहरी कामों को React की भाषा में "Side Effects" कहते हैं ।
+
+2. Solution Samjho: useEffect Kya Hai?
+अगर आप इन "Side Effects" को सीधे अपने कंपोनेंट में खुला लिख देंगे, तो आपका ऐप क्रैश हो सकता है, या स्क्रीन हर बार रेंडर होने पर फालतू के सर्वर कॉल्स कर सकती है।
+
+
+useEffect React का एक ऐसा हुक है जो इन Side Effects को सुरक्षित रूप से हैंडल करता है । इसे मुख्य रूप से दो चीज़ें चाहिए होती हैं:
+
+एक फंक्शन (जो वह काम करेगा जो आप चाहते हैं) ।
+
+एक डिपेंडेंसी एरे (जो तय करेगा कि यह काम कब और कितनी बार चलेगा) ।
+
+3. Explain the 5 Golden Variations (The Timing Control)
+useEffect को कंट्रोल करने के 5 अलग-अलग तरीके होते हैं, जिन्हें डिपेंडेंसी एरे से सेट किया जाता है:
+
+
+Variation 1 (बिना Array के): यह हर बार स्क्रीन अपडेट (render) होने पर चलता है । असल प्रोजेक्ट्स में इसका इस्तेमाल बहुत कम होता है क्योंकि यह ऐप को धीमा कर सकता है ।
+
+
+Variation 2 (Empty Array []): यह सिर्फ पहली बार (initial render या Mounting) पर चलता है ।
+
+
+Variation 3 (Single Dependency [count]): यह पहली बार स्क्रीन बनने के बाद चलता है । उसके बाद, यह सिर्फ तभी चलेगा जब Array [] ,count की वैल्यू बदलेगी ।
+
+
+Variation 4 (Multiple Dependencies [count, total]): एरे में मौजूद किसी भी एक वैल्यू के बदलने पर यह कोड चल जाएगा ।
+
+
+Variation 5 (Cleanup Function): यह तब चलता है जब पेज बंद होता है (Unmounting) । यह अगला इफेक्ट चलने से ठीक पहले भी चलता है ताकि पुराने इफेक्ट का कचरा (memory) साफ़ कर सके ।
+
+
+| Feature         | React Local State     | Redux Toolkit |
+| --------------- | --------------------- | ------------- |
+| Scope           | Component-level       | App-wide (global store) |
+| Code Complexity | Simple for small apps | Simplified for large apps |
+| Boilerplate     | Minimal               |    Reduced (via ``createSlice``)|
+| Async Handling  | Manual (useEffect)    | Built-in (Redux Thunk) |
+| Debugging       | Limited               |Redux DevTools integration |
+| Scalability     |Harder for big apps    | Designed for large-scale apps |
