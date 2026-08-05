@@ -1,0 +1,4 @@
+@import "tailwindcss";
+.isActive{
+  border-bottom: 2px solid black;
+}
