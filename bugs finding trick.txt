@@ -1,0 +1,16 @@
+[ Error Aaya ]
+      │
+      ├── 1. Line Number Dekho ──> Error console ne kahan point kiya?
+      │
+      ├── 2. Variable Print Karo ──> `console.log()` karke dekho uska Type kya hai 
+      │                             (Array hai, Object hai, ya Undefined?)
+      │
+      └── 3. Origin Trace Karo ──> Ye variable define kahan se hua tha?
+
+
+// Simple Formula: Array (Plural).map((Single Item (Singular))
+// recipes.map((recipe) => ...)
+// users.map((user) => ...)
+// data.map((item) => ...)
+
+array.some(): Yeh array ke elements par loop chalata hai aur jaise hi isse kam se kam ek (at least one) element condition satisfy karta hua milta hai, yeh aage check kiye bina turant true return kar deta hai. Agar ek bhi element condition satisfy na kare, tab yeh false return karta hai.

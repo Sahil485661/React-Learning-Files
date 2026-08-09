@@ -101,3 +101,8 @@ DevTools Support             ❌ Nahi (manual logging)                          
 Middleware / Side Effects    ❌ Built‑in nahi                                   Middleware (thunk, saga, RTK Query) 
 Performance                 Context re‑render karwa sakta hai poore subtree     Redux granular subscription, optimized re‑renders 
 Best Use Case               Small apps, limited global state                    Large apps, complex state, async data fetching 
+
+
+// ❌ WRONG: const [data, setdata] = useState()
+    // ✅ CORRECT: Empty array [] dein taaki [...data] crash na ho
+     const [data, setdata] = useState([])

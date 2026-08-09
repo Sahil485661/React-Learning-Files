@@ -9,7 +9,7 @@ const Paste = () => {
   console.log(pastes)
   const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useDispatch();
-  const filterData = pastes.filter((paste) => paste.title.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filterData = pastes.filter((paste) => paste.title.toLowerCase().includes(searchTerm.toLowerCase()))||[];
   function handleDelete(pasteId) {
     dispatch(removeToPaste(pasteId))
   }
@@ -83,3 +83,33 @@ const Paste = () => {
 }
 
 export default Paste
+
+// ? (Optional Chaining Operator)
+// Iska primary kaam hai: App crash hone se bachana (Error Guard).
+
+// Jab aap kisi object ki property access karte hain (jaise pastes.filter ya paste.title), agar woh object undefined ya null ho, toh JavaScript pure application ko crash kar deta hai.
+
+// ? lagane se JavaScript pehle check karta hai ki kya variable exist karta hai:
+
+// pastes?.filter(...): Pehle dekhega ki pastes ek valid array hai ya nahi. Agar pastes empty/undefined hoga, toh aage ka code execute hi nahi hoga aur error aane ke bajaye undefined return hoga.
+
+// paste?.title?.toLowerCase(): Pehle check karega ki paste object exist karta hai ya nahi, aur uske paas title property hai ya nahi. Agar kisi item ka title missing ho (undefined), toh .toLowerCase() call nahi hoga aur crash hone se bach jayega.
+
+// Simple Words: ? ek Safety Shield hai jo kehata hai — "Agar property mile tabhi aage badho, varna app crash mat karo."
+
+// 2. includes() Method
+// Iska primary kaam hai: Text Substring Search Karna.
+
+// includes() ek built-in JavaScript String Method hai jo check karta hai ki kya ek string ke andar doosri string exist karti hai ya nahi.
+
+// JavaScript
+// "Italian Pasta".includes("pas") // Returns: true
+// Aapke code mein:
+
+// JavaScript
+// paste?.title?.toLowerCase().includes(searchTerm.toLowerCase())
+// Both title and searchTerm .toLowerCase() se lowercase bante hain taaki search case-insensitive ho jaye (e.g., "PASTA" aur "pasta" dono match karein).
+
+// includes() check karta hai ki user ne search box mein jo type kiya hai (searchTerm), kya woh recipe ke title ka chhota sa part bhi hai.
+
+// Agar title mein match milta hai, toh includes() true return karta hai aur woh recipe screen par list ho jati hai.
