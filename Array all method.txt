@@ -1,0 +1,83 @@
+Mutating Methods (Original array ko permanent change karte hain):
+
+Method,                                 What it does,                                       Hinglish Note
+push(item),                             Adds to end,                                        End me add karta hai
+pop(),                                  Removes from end,                                   End se ek nikalta hai
+unshift(item),                          Adds to start,                                      Start me add karta hai
+shift(),                                Removes from start,                                 Start se ek nikalta hai
+splice(start, count, ...items),         Adds/removes items at any index,                    Kahin se bhi item kaato ya ghusa do
+sort(fn),                               Sorts elements in place,                            Array ko order me set karta hai (alphabetical by default)
+reverse()                               Reverses array in place,                            Ulta kar deta hai
+fill(val, start, end),                  Fills elements with static value,                   Ek hi value poori jagah bhar deta hai
+
+Non-Mutating / Transformation Methods (Naya array ya value return karte hain):
+
+Method,                                 What it does,                                       Hinglish Note
+map(fn),                                Transforms every element, returns new array",       Har element par operation karke naya array deta hai
+filter(fn),                             Returns new array with items passing condition,     Jo condition pass kare, wahi naye array me aayega"
+"slice(start, end)",                    Returns a portion of array,                         Array ka piece kaat ke naya array banata hai
+concat(arr2),                           Merges two or more arrays,                          Do arrays ko jod deta hai
+flat(depth),                            Flattens nested arrays,                             Sub-arrays ko bahar nikal ke single array banata hai
+flatMap(fn),                            Maps then flattens result,                          map() + flat(1) ek sath
+"toSorted(), toReversed(), toSpliced()  Non-mutating versions of sort, reverse, splice      Original array ko chhue bina naya sorted/reversed  array deta hai
+
+Searching & Index Methods:
+
+Method,                                 What it does,                                       Hinglish Note
+find(fn),                               Returns first matching element,                     Pehla item jo condition match kare (value deta hai)
+findIndex(fn),                          Returns index of first matching element,            Pehle matching item ka index deta hai
+findLast(fn),                           Returns last matching element,                      End se dhoondhna start karta hai
+findLastIndex(fn),                      Returns index of last matching element,             End se dhoondh ke index deta hai
+indexOf(val),                           Returns index of specific value,                    Exact value ka index (Nahi mila toh -1)
+lastIndexOf(val),                       Returns last index of specific value,               End se exact value ka index
+includes(val),                          Checks if value exists (true/false),                Array me value hai ya nahi (Boolean)
+
+Iteration & Testing Methods:
+
+Method,                                 What it does,                                       Hinglish Note
+forEach(fn),                            Runs callback for every item (Returns undefined),   Bas loop chalane ke liye (Koi naya array return nahi karta)
+every(fn),                              Checks if ALL items pass condition,                 Agar SABHI match kare tabhi true
+some(fn),                               Checks if AT LEAST ONE item passes condition,       Agar EK bhi match kar gaya toh 
+
+Accumulation & Utility Methods:
+
+Method,                                 What it does                                        Hinglish Note
+"reduce(fn, init)"                      Reduces array to a single value (left to right)     Poore array ko ek single result me convert karta hai (e.g. sum)
+"reduceRight(fn, init)                  Reduces array from right to left                    Right se left calculate karta hai
+join(separator)                         Converts array to string with separator             Array items ko jod ke string bana deta hai
+Array.isArray(val)                      Checks if value is an Array                         Structural check: true ya false
+Array.from(obj)                         Creates array from array-like/iterable object       Iterable object ko real array banata hai
+
+
+What is a Set?
+Definition: A built-in object/data structure that stores unique values of any type (primitive references or objects).
+Key Rule: Duplicate values are not allowed. If you try to add an existing value, it gets ignored.
+Hinglish Note: Ye array jaisa hi hota hai, par isme koi duplicate item nahi aa sakta. Har value sirf ek baar hoti hai.
+
+How to create set:
+// Khali Set banana
+const mySet = new Set();
+// Array se Set banana (Duplicates automatically remove ho jate hain)
+const numbers = [1, 2, 2, 3, 4, 4];
+const uniqueSet = new Set(numbers); 
+console.log(uniqueSet); // Set(4) {1, 2, 3, 4}
+
+
+Concept                                         Explanation                               Hinglish Note
+new Set(array)                                  Creates a Set from Array                  Array se saare duplicates automatic hata deta hai
+[...new Set(array)]                             Converts Set back to Array                Unique elements wala naya array ban jata hai
+
+
+Quick example:
+const numbers = [1, 2, 2, 3, 4, 4, 5];
+// Array se duplicates hatane ka best tarika:
+const uniqueNumbers = [...new Set(numbers)];
+console.log(uniqueNumbers); // [1, 2, 3, 4, 5]
+
+
+Method / Property,            What it does,                       Example,                Hinglish Note
+add(value)                    Adds a new element                  mySet.add(5);           Nayi value dalne ke liye
+delete(value)                 Removes an element                  mySet.delete(2);        Specific value ko udane ke liye
+has(value)                    Checks if value exists (true/false) mySet.has(3); // true   Check karna ki item andar hai ya nahi (Fast hai: O(1))
+size,                         Returns total count of elements     mySet.size;             Array ke .length jaisa kaam karta hai
+clear()                       Removes all elements                mySet.clear();          Poora Set khali karne ke liye

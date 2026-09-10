@@ -1,0 +1,18 @@
+1. first we need to run this commnand in terminal 
+- npm install tailwindcss @tailwindcss/vite
+
+
+2. than Vite config update karo  
+vite.config.ts me plugin add karo:
+
+- import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [tailwindcss()],
+})
+
+
+3. Tailwind import karo  
+Apne CSS file (jaise src/style.css) me:
+@import "tailwindcss";
